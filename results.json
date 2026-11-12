@@ -1,0 +1,503 @@
+{
+ "student": "Rafiullah",
+ "roll": "i24-7806",
+ "github": "https://github.com/rafiullahkakaredu/i24-7806-NLP-Assignment2",
+ "corpus": {
+  "articles": 223,
+  "tokens": 154678,
+  "split": "marker:^\\s*=+\\s*ARTICLE\\s"
+ },
+ "p1_tfidf": {
+  "shape": [
+   223,
+   7382
+  ],
+  "coverage": 1.0
+ },
+ "categories": {
+  "Politics": 29,
+  "Sports": 37,
+  "Economy": 22,
+  "International": 77,
+  "Health & Society": 58
+ },
+ "p1_top_tfidf": {
+  "Politics": [
+   "حنیف",
+   "پولیس",
+   "انصاف",
+   "وزیر",
+   "لاگ",
+   "خان",
+   "شفا",
+   "اعظم",
+   "ٹریفک",
+   "صحاف"
+  ],
+  "Sports": [
+   "کرکٹ",
+   "ٹیم",
+   "لندن",
+   "کھیل",
+   "کھلاڑ",
+   "ڈیان",
+   "میچ",
+   "پینٹنگ",
+   "ہیڈن",
+   "ریسکی"
+  ],
+  "Economy": [
+   "روپ",
+   "لیٹر",
+   "ہزار",
+   "پیٹرول",
+   "خزانہ",
+   "تیل",
+   "مکھ",
+   "گھڑ",
+   "ریلیف",
+   "ناس"
+  ],
+  "International": [
+   "انڈی",
+   "عرب",
+   "روس",
+   "حوث",
+   "سعود",
+   "بودھ",
+   "مسجد",
+   "روبوٹ",
+   "ایر",
+   "چین"
+  ],
+  "Health & Society": [
+   "نیپال",
+   "سیلاب",
+   "خاتون",
+   "طالب",
+   "سکول",
+   "بچہ",
+   "پتھر",
+   "مامیہ",
+   "ہسپتال",
+   "قتل"
+  ]
+ },
+ "p1_ppmi": {
+  "nnz": 461567,
+  "cooc_nnz": 530672
+ },
+ "p1_w2v": {
+  "epoch_loss": [
+   4.3835,
+   3.3449,
+   3.2874,
+   3.2681,
+   3.2326,
+   3.167,
+   3.0969,
+   3.031,
+   2.977,
+   2.9245
+  ],
+  "vocab": 7382
+ },
+ "p1_analogy": {
+  "correct10": 10,
+  "pool_correct": 13,
+  "pool_n": 40,
+  "relations_correct": [
+   "compound",
+   "country:capital",
+   "country:nationality",
+   "first:last name",
+   "gender"
+  ]
+ },
+ "p1_assessment": "The Skip-gram embeddings capture clear semantic and morpho-syntactic regularities: 10 of the 10 reported analogies place the expected word in the top-3 (relations solved: compound, country:capital, country:nationality, first:last name, gender), and 13/40 of the whole pool are solved. Nearest neighbours group words of the same news domain (e.g. پاکستان → کمنٹیٹر، دکھ، سپورٹس، منان، ہار). Errors come mostly from low-frequency words and from the small corpus (154,678 tokens), where neighbours reflect co-occurrence in the same articles (topical relatedness) rather than strict synonymy.",
+ "p1_conditions": [
+  {
+   "condition": "C1 PPMI",
+   "dim": 7382,
+   "vocab": 7382,
+   "MRR": 0.2141,
+   "hits@10": 7,
+   "OOV pairs": 0
+  },
+  {
+   "condition": "C2 SG raw d=100",
+   "dim": 100,
+   "vocab": 10002,
+   "MRR": 0.1066,
+   "hits@10": 5,
+   "OOV pairs": 1
+  },
+  {
+   "condition": "C3 SG cleaned d=100",
+   "dim": 100,
+   "vocab": 7382,
+   "MRR": 0.1378,
+   "hits@10": 5,
+   "OOV pairs": 0
+  },
+  {
+   "condition": "C4 SG cleaned d=200",
+   "dim": 200,
+   "vocab": 7382,
+   "MRR": 0.1805,
+   "hits@10": 5,
+   "OOV pairs": 0
+  }
+ ],
+ "p1_cond_discussion": "Best condition by MRR: C1 PPMI (MRR=0.214). Skip-gram on cleaned text (C3, 0.138) vs raw text (C2, 0.107): cleaning helps because normalisation merges spelling variants and strips attached punctuation, so counts are not split across surface forms. PPMI (C1, 0.214) gives sparse, high-dimensional vectors that are strong for frequent words but noisy for rare ones. Doubling d to 200 (C4, 0.180) improves the result: the larger space separates more fine-grained relations, although the gain should be weighed against twice the memory and training cost.",
+ "p2_lexicon": {
+  "NOUN": 361,
+  "VERB": 1715,
+  "ADJ": 319,
+  "ADV": 253
+ },
+ "p2_gazetteer": {
+  "PER (Pakistani)": 90,
+  "PER (foreign)": 20,
+  "LOC": 117,
+  "ORG": 82,
+  "MISC": 41
+ },
+ "p2_data": {
+  "n": 500,
+  "split": [
+   350,
+   75,
+   75
+  ],
+  "topics": {
+   "Health & Society": 167,
+   "International": 167,
+   "Sports": 166
+  },
+  "pos_total": {
+   "NOUN": 4808,
+   "VERB": 1242,
+   "ADJ": 525,
+   "ADV": 619,
+   "PRON": 609,
+   "DET": 309,
+   "CONJ": 621,
+   "POST": 2798,
+   "NUM": 312,
+   "PUNC": 710,
+   "AUX": 758,
+   "UNK": 15
+  },
+  "ner_total": {
+   "O": 12624,
+   "B-PER": 51,
+   "I-PER": 28,
+   "B-LOC": 330,
+   "I-LOC": 30,
+   "B-ORG": 77,
+   "I-ORG": 109,
+   "B-MISC": 67,
+   "I-MISC": 10
+  }
+ },
+ "p2_pos": {
+  "mode": "fine-tuned",
+  "acc": 93.75684556407448,
+  "macro_f1": 91.3497267155824,
+  "confused": [
+   "NOUN<->ADJ (46)",
+   "NOUN<->VERB (33)",
+   "NOUN<->ADV (10)"
+  ],
+  "frozen": {
+   "val macro-F1": 88.32,
+   "test accuracy": 91.24,
+   "test macro-F1": 88.2
+  },
+  "finetuned": {
+   "val macro-F1": 92.19,
+   "test accuracy": 93.76,
+   "test macro-F1": 91.35
+  }
+ },
+ "p2_ner": {
+  "mode": "fine-tuned",
+  "err_types": {
+   "boundary/partial": 9,
+   "never seen": 9,
+   "context generalisation (not in gazetteer)": 7,
+   "type confusion": 5,
+   "ambiguous context": 5
+  },
+  "crf": {
+   "PER": {
+    "precision": 85.71,
+    "recall": 66.67,
+    "f1": 75.0,
+    "support": 9
+   },
+   "LOC": {
+    "precision": 87.8,
+    "recall": 83.72,
+    "f1": 85.71,
+    "support": 43
+   },
+   "ORG": {
+    "precision": 64.29,
+    "recall": 69.23,
+    "f1": 66.67,
+    "support": 13
+   },
+   "MISC": {
+    "precision": 50.0,
+    "recall": 30.0,
+    "f1": 37.5,
+    "support": 10
+   },
+   "overall": {
+    "precision": 79.41,
+    "recall": 72.0,
+    "f1": 75.52,
+    "support": 75,
+    "accuracy": 97.81
+   }
+  },
+  "softmax": {
+   "PER": {
+    "precision": 100.0,
+    "recall": 33.33,
+    "f1": 50.0,
+    "support": 9
+   },
+   "LOC": {
+    "precision": 78.57,
+    "recall": 76.74,
+    "f1": 77.65,
+    "support": 43
+   },
+   "ORG": {
+    "precision": 76.92,
+    "recall": 76.92,
+    "f1": 76.92,
+    "support": 13
+   },
+   "MISC": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0,
+    "support": 10
+   },
+   "overall": {
+    "precision": 79.31,
+    "recall": 61.33,
+    "f1": 69.17,
+    "support": 75,
+    "accuracy": 97.1
+   }
+  },
+  "n_fp": 14,
+  "n_fn": 21,
+  "errors": [
+   "FP: type confusion – gold is LOC; the context (neighbouring words) is typical for MISC",
+   "FP: model generalised from context (e.g. a title/verb pattern) to a word absent from the gazetteer – may be a real entity missed by the silver gazetteer annotation",
+   "FP: model generalised from context (e.g. a title/verb pattern) to a word absent from the gazetteer – may be a real entity missed by the silver gazetteer annotation",
+   "FP: type confusion – gold is MISC; the context (neighbouring words) is typical for LOC",
+   "FP: boundary error – gold span is 'ایشی کپ'",
+   "FN: partially/mis-typed – predicted MISC span 'سری'",
+   "FN: entity never seen as an entity in training data; its embedding alone is not distinctive enough",
+   "FN: entity never seen as an entity in training data; its embedding alone is not distinctive enough",
+   "FN: seen 1× in training but the local context here is ambiguous (e.g. used as modifier)",
+   "FN: seen 2× in training but the local context here is ambiguous (e.g. used as modifier)"
+  ]
+ },
+ "p2_ablation": {
+  "Baseline (BiLSTM, dropout, W2V init, CRF for NER)": [
+   92.19,
+   91.35,
+   78.46,
+   75.52
+  ],
+  "A1 Unidirectional LSTM": [
+   86.44,
+   88.81,
+   65.08,
+   63.64
+  ],
+  "A2 No dropout": [
+   92.14,
+   93.86,
+   83.72,
+   80.0
+  ],
+  "A3 Random embedding init": [
+   92.58,
+   93.04,
+   80.0,
+   70.23
+  ],
+  "A4 Softmax instead of CRF (NER)": [
+   null,
+   null,
+   70.59,
+   69.17
+  ]
+ },
+ "p2_ablation_text": [
+  "A1 Unidirectional LSTM: POS macro-F1 -2.54, NER F1 -11.88 vs. baseline – removing backward context hurts, so it contributes to the baseline.",
+  "A2 No dropout: POS macro-F1 +2.51, NER F1 +4.48 vs. baseline – removing dropout regularisation actually helps here (+7.0 combined); with only ~350 silver-labelled training sentences the model benefits from more capacity / less regularisation.",
+  "A3 Random embedding init: POS macro-F1 +1.69, NER F1 -5.29 vs. baseline – removing pre-trained Word2Vec initialisation hurts, so it contributes to the baseline.",
+  "A4 Softmax instead of CRF: NER F1 -6.35 – structured CRF decoding helps by forbidding invalid BIO transitions (e.g. O→I-PER) and keeping multi-word entities together."
+ ],
+ "p2_modes": {
+  "POS val macro-F1": {
+   "frozen": 88.32,
+   "fine-tuned": 92.19
+  },
+  "NER val F1 (conlleval)": {
+   "frozen": 75.0,
+   "fine-tuned": 78.46
+  }
+ },
+ "p3_data": {
+  "split": [
+   156,
+   33,
+   34
+  ],
+  "dist": {
+   "Politics": 29,
+   "Sports": 37,
+   "Economy": 22,
+   "International": 77,
+   "Health & Society": 58
+  }
+ },
+ "p3_trf": {
+  "acc": 58.82352941176471,
+  "macro_f1": 50.47330447330447,
+  "best_epoch": 12,
+  "epoch_time": 5.244526648521424,
+  "cm": [
+   [
+    0,
+    0,
+    0,
+    1,
+    3
+   ],
+   [
+    0,
+    2,
+    0,
+    3,
+    1
+   ],
+   [
+    0,
+    0,
+    2,
+    1,
+    0
+   ],
+   [
+    0,
+    1,
+    0,
+    9,
+    2
+   ],
+   [
+    0,
+    0,
+    0,
+    2,
+    7
+   ]
+  ]
+ },
+ "p3_bilstm": {
+  "acc": 67.64705882352942,
+  "macro_f1": 62.53096179183135,
+  "best_epoch": 18,
+  "epoch_time": 7.83
+ },
+ "p3_compare": [
+  {
+   "index": "BiLSTM",
+   "test accuracy (%)": 67.65,
+   "test macro-F1": 62.53,
+   "best val epoch": 18,
+   "epochs to 95% of best val acc": 12,
+   "min val-loss epoch": 18,
+   "sec / epoch": 7.83,
+   "parameters": 1385757
+  },
+  {
+   "index": "Transformer",
+   "test accuracy (%)": 58.82,
+   "test macro-F1": 50.47,
+   "best val epoch": 12,
+   "epochs to 95% of best val acc": 12,
+   "min val-loss epoch": 11,
+   "sec / epoch": 5.24,
+   "parameters": 1746949
+  }
+ ],
+ "p3_compare_text": [
+  "(1) On the held-out test set the BiLSTM is more accurate: 67.6% vs. 58.8% for the Transformer, a difference of 8.8 percentage points (macro-F1 50.5 for the Transformer vs. 62.5 for the BiLSTM).",
+  "With only 34 test articles one article is worth 2.9 points, so differences of this size should be read with caution.",
+  "(2) Both models reached 95% of their best validation accuracy after 12 epoch(s).",
+  "The BiLSTM benefits from pre-trained Word2Vec vectors, while the Transformer learns embeddings from scratch but uses warm-up and cosine decay, so the two effects roughly cancel out (best validation epochs: BiLSTM 18, Transformer 12).",
+  "(3) Per epoch the Transformer was faster (5.24s vs. 7.83s).",
+  "Self-attention processes all 257 positions of a sequence in parallel with a few large matrix multiplications that suit modern hardware, whereas the LSTM must step through the 256 tokens sequentially in each direction and each layer; the quadratic cost of attention is small at this length.",
+  "(4) The final-layer heatmaps show that the heads specialise: head 1 is the most focused (mean maximum weight 0.02 per query), head 3 the most diffuse (0.01), and on average 0.6% of each token's attention goes to the [CLS] position.",
+  "The [CLS] query concentrates on words such as میچ، ہو، دیکھ، بولنگ، وکٹ; 1 of the 24 most-attended tokens are function words and 3 are keywords from our category lists, so beyond our keyword lists the model has learned its own topical cues (e.g. domain-specific nouns and verbs).",
+  "Padding positions receive zero weight because of the key-padding mask, confirming that the mask works.",
+  "(5) For a corpus of only 200–300 articles the BiLSTM is the more appropriate architecture, which this run also supports.",
+  "It has a strong sequential inductive bias and can reuse the Word2Vec embeddings learned in Part 1, so far fewer of its 1,385,757 parameters (vs. 1,746,949 for the Transformer) must be learned from the labelled articles alone.",
+  "A Transformer trained from scratch has almost no built-in prior about word order or locality and typically needs much more data (or pre-training) to beat recurrent models, so on small data it overfits more easily and its results vary more between random seeds.",
+  "If more articles became available, or if the Transformer could be pre-trained on unlabelled Urdu text, its parallelism and long-range attention would make it the better choice."
+ ],
+ "p3_focus": [
+  [
+   "Sports",
+   [
+    "میچ",
+    "ہو",
+    "دیکھ",
+    "بولنگ",
+    "وکٹ",
+    "روز",
+    "حاصل",
+    "گا"
+   ]
+  ],
+  [
+   "Economy",
+   [
+    "نصر",
+    "پاکست",
+    "رابطہ",
+    "ہزار",
+    "بیگ",
+    "واپس",
+    "فیصل",
+    "زمر"
+   ]
+  ],
+  [
+   "International",
+   [
+    "انڈی",
+    "مواد",
+    "دیکھ",
+    "دار",
+    "کیا",
+    "مقام",
+    "ذمہ",
+    "سی"
+   ]
+  ]
+ ]
+}
